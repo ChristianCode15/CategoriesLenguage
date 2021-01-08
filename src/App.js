@@ -43,6 +43,18 @@ function App() {
     socket.emit('category-vote', id);
   }
 
+  const deleteCategory = (id) => {
+    socket.emit('category-delete', id);
+  }
+
+  const EditName = (id, name) => {
+    socket.emit('category-edit', {id, name});
+  }
+
+  const addData = (name) => {
+    socket.emit('category-add', name);
+  }
+
   return (
     <div className="container">
       <div className="alert">
@@ -66,10 +78,14 @@ function App() {
           <CategoryList
           data = {category}
           votes = {votes}
+          deleteCategory = {deleteCategory}
+          EditName = {EditName}
           />
         </div>
         <div className="col-4">
-          <CategoryAdd/>
+          <CategoryAdd
+          addData={addData}
+          />
         </div>
       </div>
     </div>

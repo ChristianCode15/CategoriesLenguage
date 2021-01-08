@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-export const CategoryList = ({data, votes}) => {
+export const CategoryList = ({data, votes, deleteCategory, EditName}) => {
     //Estado para cpoder editar categorias
     const [ categories, setCategories] = useState(data);
 
@@ -19,7 +19,7 @@ export const CategoryList = ({data, votes}) => {
     }
 
     const onLostFocus = (id, name) => {
-        console.log(name, id);
+        EditName(id, name);
     }
     
     const createRows = () => {
@@ -42,7 +42,10 @@ export const CategoryList = ({data, votes}) => {
                 </td>
                 <td><h3>{category.votes}</h3></td>
                 <td>
-                    <button className="btn btn-danger">Borrar</button>
+                    <button 
+                    className="btn btn-danger"
+                    onClick={() => deleteCategory(category.id)}
+                    >Borrar</button>
                 </td>
             </tr>   
             )

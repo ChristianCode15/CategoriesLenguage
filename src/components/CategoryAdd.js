@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { SocketContext } from "../context/SocketContext";
 
-export const CategoryAdd = ({addData}) => {
 
+
+export const CategoryAdd = () => {
     const [category, setCategory] = useState('');
+    const {socket} = useContext(SocketContext);
 
     const addCategory = (e) => {
         e.preventDefault();
         if(category.trim().length > 0){
-            addData(category);
+            socket.emit('category-add', {name : category});
             setCategory('');
+            
         }
     }
 
@@ -20,8 +24,8 @@ export const CategoryAdd = ({addData}) => {
         <input
         className="form-control"
         placeholder="New category name"
-        onChange={(event) => setCategory(event.target.value)}
         value={category}
+        onChange={(e) => setCategory(e.target.value)}
         />
       </form>
     </>

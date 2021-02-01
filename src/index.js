@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css'; 
-import App from './App';
+import { CategoriesApp } from './CategoriesApp';
 
 
 ReactDOM.render(
-    <App />,
+    <CategoriesApp />,
   document.getElementById('root')
 );
